@@ -42,8 +42,8 @@ Player.prototype.update = function(dt) {this.x += this.x + this.speed * dt;
 };
 
 Player.prototype.render = function(x,y) {
-  this.x = 200;
-  this.y = 385;
+  this.x = 302;
+  this.y = 485;
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
