@@ -39,7 +39,7 @@ Enemy.prototype.reset = function () {
   this.x = 0 - 100;
   this.y = (this.row * 83) - 20;
 
-  this.speed = Math.floor(Math.random() * 400);
+  this.speed = Math.floor(Math.random() * 400 + 75);
 }
 
 // Draw the enemy on the screen, required method for game
@@ -78,12 +78,13 @@ Player.prototype.render = function (x, y) {
 };
 
 Player.prototype.handleInput = function (keyCode) {
+
   if (keyCode === 'left') {
     if (this.column > 0)
       this.column -= 1;
     console.log('col: ' + this.col + 'row:');
   } else if (keyCode === 'up') {
-    if (this.row > 0)
+    if ( this.row > 0 )
       this.row -= 1;
   } else if (keyCode === 'right') {
     if (this.column < 6)
@@ -92,13 +93,14 @@ Player.prototype.handleInput = function (keyCode) {
     if (this.row < 6)
       this.row += 1;
   }
+
 };
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 var allEnemies = [];
-var numEnemies = 6;
+var numEnemies = 5;
 
 for (i = 0; i < numEnemies; i++) {
   allEnemies.push(new Enemy(i));
