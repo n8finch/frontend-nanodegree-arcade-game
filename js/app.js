@@ -17,6 +17,7 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
 
+    this.x += Math.random() * 100 *dt;
 
 
 
@@ -63,9 +64,9 @@ Player.handleInput = function (keyCode){
 // Place the player object in a variable called player
 var allEnemies = [new Enemy(403,395), new Enemy(302, 310), new Enemy (201,225)];
 
-var Player = new Player(302,480);
+var player = new Player(302,485);
 
-var enemy1 = new Enemy();
+
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
