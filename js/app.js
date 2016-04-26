@@ -40,7 +40,6 @@ Enemy.prototype.reset = function() {
   this.y = (this.row * 83) - 20;
 
   this.speed = Math.floor(Math.random() * 400);
-  console.log(this.speed);
 }
 
 // Draw the enemy on the screen, required method for game
@@ -52,39 +51,66 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function(x,y) {
-    this.x = x;
-    this.y = y;
+    this.x = 0;
+    this.y = 0;
+    this.row = 0;
+    this.column = 0;
+
     this.sprite = 'images/char-boy.png';
+
+    this.reset();
 };
 
 
 
-Player.prototype.update = function(dt) {this.x += this.x + this.speed * dt;
+Player.prototype.update = function(dt) {
+  this.x = this.column * 101;
+  this.y = (this.row * 83);
+};
+
+Player.prototype.reset = function() {
+  this.row = 6;
+  //Randomize player's starting tile
+  this.column = (Math.floor(Math.random()*7));
+  console.log(this.column);
 };
 
 Player.prototype.render = function(x,y) {
-  this.x = 302;
-  this.y = 485;
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-Player.handleInput = function (keyCode){
-  if(keyCode == 'left')
-  { this.x -= 1}
-  else if(keyCode == 'right')
-  {this.x += 1}
-  else if (keyCode == 'down')
-  {this.y -= 1}
-  else  {
-   this.y += 1}
+Player.prototype.handleInput = function(keyCode) {
+    switch(keyCode) {
+        case 'left':
+            if (this.col > 0)
+                this.col -= 1;
+        break;
+        case 'up':
+            if (this.row > 0)
+                this.row -= 1;
+        break;
+        case 'right':
+            if (this.col < 4)
+                this.col += 1;
+        break;
+        case 'down':
+            if (this.row < 5)
+                this.row += 1;
+        break;
+    }
 };
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var allEnemies = [new Enemy(403,395), new Enemy(302, 310), new Enemy (201,225)];
+var allEnemies = [];
+var numEnemies = 6;
 
-var player = new Player(302,485);
+for (i=0; i < numEnemies; i++) {
+    allEnemies.push(new Enemy(i));
+}
+
+var player = new Player();
 
 
 
@@ -98,5 +124,5 @@ document.addEventListener('keyup', function(e) {
         40: 'down'
     };
 
-    Player.handleInput(allowedKeys[e.keyCode]);
+    Player.prototype.handleInput(allowedKeys[e.keyCode]);
 });
