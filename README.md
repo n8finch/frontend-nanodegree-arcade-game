@@ -1,9 +1,9 @@
 #Buggin' Boy!
 ===============================
 
-This is a project for the Udacity Front End Developer nanodegree. It was forked from XXX.
+This is a project for the Udacity Front End Developer nanodegree. It was forked from [this repo](https://github.com/udacity/frontend-nanodegree-arcade-game).
 
-You can play this version XXX
+You can play this version [here](http://n8finch.github.io/frontend-nanodegree-arcade-game/).
 
 ##The Game
 We've all played the classic arcade (and graphing calculator) game Frogger. This game has a similar goal.
