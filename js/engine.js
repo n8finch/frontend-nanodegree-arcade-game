@@ -91,6 +91,7 @@ var Engine = (function (global) {
    * render methods.
    */
   function updateEntities(dt) {
+    //update bridge first
     bridge.update();
     allEnemies.forEach(function (enemy) {
       enemy.update(dt);
@@ -98,21 +99,19 @@ var Engine = (function (global) {
     player.update();
   }
 
-  //TODO
-
   function checkCollisions() {
     //If they made it to the grassy rest area, rest the game
     if (player.row === 0) {
       player.reset();
       bridge.reset();
-    } else {
+    }
+      //...but if they didn't... COLLISION!... and then reset
+    else {
       allEnemies.forEach(function (enemy) {
         if (player.row === enemy.row) {
           if (player.x < enemy.x + 101 &&
             player.x + 101 > enemy.x) {
-
-            //TODO
-            console.log("Collision!");
+            console.log("Ouch!");
             player.reset();
             enemy.reset();
           }
@@ -172,6 +171,7 @@ var Engine = (function (global) {
     /* Loop through all of the objects within the allEnemies array and call
      * the render function you have defined.
      */
+    //render bridge first
     bridge.render();
     allEnemies.forEach(function (enemy) {
       enemy.render();
