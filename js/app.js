@@ -112,7 +112,7 @@ Player.prototype.handleInput = function (keyCode) {
       this.column -= 1;
     console.log('col: ' + this.col + 'row:');
   } else if (keyCode === 'up') {
-    if (player.column === bridge.column) {
+    if (this.column === bridge.column) {
       this.row -= 1;
     } else if (this.row > 3) {
       this.row -= 1;
