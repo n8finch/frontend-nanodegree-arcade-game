@@ -1,5 +1,4 @@
 # Buggin' Boy!
-===============================
 
 This is a project for the Udacity Front End Developer nanodegree. It was forked from [this repo](https://github.com/udacity/frontend-nanodegree-arcade-game).
 
