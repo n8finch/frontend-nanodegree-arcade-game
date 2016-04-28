@@ -80,14 +80,17 @@ Player.prototype.render = function (x, y) {
 Player.prototype.handleInput = function (keyCode) {
 
   if (keyCode === 'left') {
-    if (this.column > 0)
+    if (this.column > 0 && this.row > 3)
       this.column -= 1;
     console.log('col: ' + this.col + 'row:');
   } else if (keyCode === 'up') {
-    if ( this.row > 0 )
+    if (player.column === bridge.column) {
       this.row -= 1;
+    } else if (this.row > 3) {
+      this.row -= 1;
+    }
   } else if (keyCode === 'right') {
-    if (this.column < 6)
+    if (this.column < 6 && this.row > 3)
       this.column += 1;
   } else if (keyCode === 'down') {
     if (this.row < 6)
@@ -96,9 +99,39 @@ Player.prototype.handleInput = function (keyCode) {
 
 };
 
+
+var Bridge = function (x, y) {
+  this.x = 0;
+  this.y = 0;
+  this.row = 0;
+  this.column = 0;
+
+  this.sprite = 'images/stone-bridge.png';
+
+  this.reset();
+};
+
+
+Bridge.prototype.update = function (dt) {
+  this.x = this.column * 101 + 4;
+  this.y = (this.row * 83) - 40;
+};
+
+Bridge.prototype.reset = function () {
+  this.row = 2;
+  //Randomize player's starting tile
+  this.column = (Math.floor(Math.random() * 7));
+};
+
+Bridge.prototype.render = function (x, y) {
+  ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
+var bridge = new Bridge();
 var allEnemies = [];
 var numEnemies = 5;
 
@@ -107,7 +140,6 @@ for (i = 0; i < numEnemies; i++) {
 }
 
 var player = new Player();
-
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
@@ -121,3 +153,7 @@ document.addEventListener('keyup', function (e) {
 
   player.handleInput(allowedKeys[e.keyCode]);
 });
+
+
+
+
